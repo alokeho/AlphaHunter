@@ -1,0 +1,55 @@
+# =============================================================================
+# AlphaHunter 本地一键启动编排
+# 使用：docker compose up --build
+# 前端：http://localhost:5173
+# 后端：http://localhost:8000/docs
+#
+# 说明：
+# - 前端 Nginx 会把 /api/ 反向代理到后端，因此浏览器同源访问，无需额外 CORS。
+# - SQLite 数据库持久化在 alphahunter-data 命名卷中。
+# =============================================================================
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: alphahunter-backend
+    environment:
+      ALPHAHUNTER_ENVIRONMENT: production
+      ALPHAHUNTER_DEBUG: "false"
+      ALPHAHUNTER_DATABASE_URL: sqlite:////app/data/alphahunter.db
+      ALPHAHUNTER_CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      ALPHAHUNTER_LOG_LEVEL: INFO
+      ALPHAHUNTER_SEED_DEMO_DATA: "true"
+      ALPHAHUNTER_SECRET_KEY: change-me-in-production
+    volumes:
+      - alphahunter-data:/app/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: alphahunter-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  alphahunter-data:
+    name: alphahunter-data

@@ -1,0 +1,40 @@
+# =============================================================================
+# AlphaHunter 后端工程配置
+# 作用：集中声明 Python 版本、测试路径、Ruff 与 Black 风格规则。
+# 注意：运行依赖不在这里声明，统一维护在 requirements*.txt 中。
+# =============================================================================
+
+[project]
+name = "alphahunter-backend"
+version = "0.1.0"
+description = "AlphaHunter A 股 AI 量化选股平台后端"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+# 测试缓存放入 .test-runtime，避免污染仓库根目录并兼容 Windows 沙箱。
+cache_dir = ".test-runtime/.pytest_cache"
+filterwarnings = [
+  "ignore::DeprecationWarning:pandas_ta.*",
+  "ignore::DeprecationWarning:backtrader.*",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["app", "tests"]
+exclude = [".venv", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+# B008：FastAPI 的 Depends()/Query() 在默认参数中调用是官方推荐写法。
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.black]
+target-version = ["py312"]
+line-length = 100

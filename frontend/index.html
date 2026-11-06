@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AlphaHunter：面向 A 股的 AI 量化选股研究平台，覆盖数据、因子、模型与回测。"
+    />
+    <meta name="theme-color" content="#0b1424" />
+    <title>AlphaHunter · A 股 AI 量化选股平台</title>
+    <style>
+      /*
+       * Vue 挂载前的启动占位样式。
+       * 目的：避免白屏闪烁，并让首屏在慢网络下也保持专业观感。
+       */
+      body {
+        margin: 0;
+        background: #f3f6fb;
+        color: #122033;
+        font-family:
+          "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      }
+      .boot-screen {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .boot-mark {
+        display: grid;
+        width: 58px;
+        height: 58px;
+        place-items: center;
+        border-radius: 17px;
+        background: linear-gradient(135deg, #0b1424, #17416b);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        box-shadow: 0 14px 30px rgb(11 20 36 / 18%);
+      }
+      .boot-text {
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        color: #63738a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="boot-screen">
+        <div class="boot-mark">AH</div>
+        <div class="boot-text">ALPHAHUNTER LOADING</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

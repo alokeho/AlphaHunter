@@ -1,0 +1,14 @@
+# 后端 Docker 构建上下文忽略项，减小镜像并避免泄露本地数据
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+tests
+data/*.db
+data/*.db-*
+.env
+.env.*
+!.env.example
+*.log

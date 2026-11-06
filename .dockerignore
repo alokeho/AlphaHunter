@@ -1,0 +1,13 @@
+# 根目录 Docker 上下文忽略项（各子项目仍有独立 .dockerignore）
+.git
+.idea
+.vscode
+.venv
+node_modules
+frontend/node_modules
+frontend/dist
+backend/data/*.db
+backend/data/*.db-*
+.env
+.env.*
+*.log

@@ -1,0 +1,247 @@
+/* =============================================================================
+ * AlphaHunter 全局样式
+ *
+ * 设计语言：
+ * - 深海军蓝侧边栏 + 浅灰蓝内容区，突出金融研究终端的专业感；
+ * - 主色使用蓝色，数据正向状态使用 A 股常用的红色系变量备用；
+ * - Element Plus 组件通过 CSS 变量与局部覆盖统一圆角、边框和阴影。
+ * ========================================================================== */
+
+:root {
+  /* 品牌色 */
+  --ah-navy: #0b1424;
+  --ah-navy-soft: #122033;
+  --ah-blue: #2563eb;
+  --ah-blue-soft: #eff5ff;
+  --ah-mint: #31d0a5;
+  --ah-mint-dark: #14aa82;
+  --ah-red: #e34d59;
+  --ah-amber: #d97706;
+  --ah-violet: #7c5ce7;
+
+  /* 中性色 */
+  --ah-bg: #f3f6fb;
+  --ah-surface: #ffffff;
+  --ah-text: #122033;
+  --ah-text-soft: #6b7c91;
+  --ah-text-faint: #98a6b8;
+  --ah-border: #e6ebf2;
+  --ah-border-strong: #dbe2ec;
+
+  /* 阴影与圆角 */
+  --ah-radius-sm: 8px;
+  --ah-radius: 12px;
+  --ah-radius-lg: 16px;
+  --ah-shadow-sm: 0 2px 8px rgb(18 32 51 / 4%);
+  --ah-shadow: 0 10px 30px rgb(18 32 51 / 6%);
+
+  /* Element Plus 主题覆盖 */
+  --el-color-primary: #2563eb;
+  --el-color-primary-light-3: #5b8af0;
+  --el-color-primary-light-5: #8aabf5;
+  --el-color-primary-light-7: #b9cdf9;
+  --el-color-primary-light-8: #d0ddfb;
+  --el-color-primary-light-9: #eff5ff;
+  --el-color-primary-dark-2: #1d4fc4;
+  --el-color-success: #14aa82;
+  --el-color-warning: #d97706;
+  --el-color-danger: #e34d59;
+  --el-border-radius-base: 8px;
+  --el-border-color-light: #e6ebf2;
+  --el-font-size-base: 13px;
+  --el-text-color-primary: #122033;
+  --el-text-color-regular: #52657c;
+  --el-text-color-secondary: #8593a6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--ah-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--ah-bg);
+  color: var(--ah-text);
+  font-family:
+    "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--ah-blue);
+  text-decoration: none;
+}
+
+::selection {
+  background: rgb(37 99 235 / 16%);
+}
+
+/* 统一滚动条，避免 Windows 默认滚动条破坏视觉一致性 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: #c3cedd;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a9b7c9;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------------- 可复用页面元素 ---------------- */
+.page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.surface-card {
+  border: 1px solid var(--ah-border);
+  border-radius: var(--ah-radius-lg);
+  background: var(--ah-surface);
+  box-shadow: var(--ah-shadow-sm);
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--ah-text-soft);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--ah-text-soft);
+}
+
+.mono {
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.code-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border: 1px solid #e2e9f3;
+  border-radius: 5px;
+  background: #f7f9fc;
+  color: #42566f;
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ---------------- Element Plus 细节统一 ---------------- */
+.el-card {
+  --el-card-border-color: var(--ah-border);
+  border-radius: var(--ah-radius-lg);
+  box-shadow: var(--ah-shadow-sm);
+}
+
+.el-button {
+  font-weight: 600;
+}
+
+.el-button--primary {
+  box-shadow: 0 4px 12px rgb(37 99 235 / 18%);
+}
+
+.el-table {
+  --el-table-border-color: #eef2f7;
+  --el-table-header-bg-color: #f8fafd;
+  --el-table-header-text-color: #6b7c91;
+  --el-table-row-hover-bg-color: #f8faff;
+  --el-table-text-color: #31445b;
+  font-size: 12px;
+}
+
+.el-table th.el-table__cell {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.el-table .cell {
+  line-height: 1.5;
+}
+
+.el-tag {
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.el-drawer {
+  --el-drawer-padding-primary: 24px;
+}
+
+.el-pagination {
+  --el-pagination-font-size: 12px;
+}
+
+.el-descriptions {
+  --el-descriptions-item-bordered-label-background: #f8fafd;
+}
+
+/* 移动端表格允许横向滚动 */
+.el-table__body-wrapper {
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .page-stack {
+    gap: 14px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
